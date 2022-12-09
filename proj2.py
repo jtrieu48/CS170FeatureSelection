@@ -180,20 +180,20 @@ def leave_one_out_cross_validation(cols, seen, data_frame_copy):
         nearest_dist = sys.maxsize
         nearest_location = sys.maxsize
 
-        for l in range(nr):
+        for k in range(nr):
             dist = 0
 
             # Not in same row, calculate and compare distance
-            if j != l:
+            if j != k:
                 d = {}
 
                 # Using Numpy to calc distance in same row
-                dist = math.sqrt(np.sum(np.power(obj_class - data_frame_copy[l][1:cols], 2)))
+                dist = math.sqrt(np.sum(np.power(obj_class - data_frame_copy[k][1:cols], 2)))
 
                 # Compare & update dist
                 if dist <= nearest_dist:
                     nearest_dist = dist
-                    nearest_location = l + 1
+                    nearest_location = k + 1
                     nearest_n_label = data_frame_copy[nearest_location - 1][0]
 
         # Found classified & increment
